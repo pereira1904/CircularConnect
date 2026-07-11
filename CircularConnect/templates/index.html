@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}CircularConnect — Circular Technology Summit{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Circular Technology Summit 2026</h1>
+    <p>
+        Join industry leaders, researchers, and innovators shaping a sustainable digital future
+        through circular technology, hardware reuse, and responsible disposal.
+    </p>
+    <div class="event-meta">
+        <span>&#128197; 15–16 September 2026</span>
+        <span>&#128205; Innovation Hub, Dublin, Ireland</span>
+        <span>&#128101; 200 Places Available</span>
+    </div>
+</div>
+
+<!-- Live Stats Dashboard -->
+<div class="stats-widget">
+    <h3>Registration Dashboard</h3>
+    <div id="event-stats-dashboard" data-event-id="1">
+        <p style="color: var(--text-light);">Loading statistics...</p>
+    </div>
+</div>
+
+<!-- About the Summit -->
+<div class="card" style="cursor: default; transform: none;">
+    <h3>About the Summit</h3>
+    <p>
+        The Circular Technology Summit brings together professionals from across Europe and beyond
+        to explore how technology can drive the circular economy. Over two days, attendees will
+        engage with cutting-edge research, practical workshops, and thought-provoking panel discussions.
+    </p>
+    <p><strong>Key Topics:</strong></p>
+    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: var(--text-light);">
+        <li>Data-centre hardware reuse and recycling</li>
+        <li>Reverse logistics and circular supply chains</li>
+        <li>Sustainable technology and green computing</li>
+        <li>Digital product passports</li>
+        <li>AI in circular supply chains</li>
+        <li>Secure data erasure and responsible disposal</li>
+    </ul>
+</div>
+
+<!-- Events / Sessions -->
+<div class="section-header mt-3">
+    <h2>Summit Sessions</h2>
+    <a href="{{ url_for('register') }}" class="btn btn-primary">Register Now</a>
+</div>
+
+<div class="events-grid">
+    {% for event in events %}
+    <div class="card">
+        <h3><a href="{{ url_for('event_detail', event_id=event['id']) }}">{{ event['title'] }}</a></h3>
+        <p>{{ event['description'][:150] }}{% if event['description']|length > 150 %}...{% endif %}</p>
+        <div class="card-meta">
+            <span>&#128197; {{ event['date'] }}</span>
+            <span>&#128336; {{ event['time'] }}</span>
+            <span>&#128101; Capacity: {{ event['capacity'] }}</span>
+        </div>
+        <div class="mt-2">
+            <a href="{{ url_for('event_detail', event_id=event['id']) }}" class="btn btn-outline btn-sm">View Details</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

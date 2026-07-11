@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Register — CircularConnect{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Event Registration</h2>
+    <p class="text-center mb-3" style="color: var(--text-light);">
+        Complete the form below to register for a Circular Technology Summit session.
+    </p>
+
+    <form method="POST" action="{{ url_for('register') }}" data-validate>
+        <!-- Event Selection -->
+        <div class="form-group">
+            <label for="event-select">Select Event <span class="required">*</span></label>
+            <select name="event_id" id="event-select" required>
+                <option value="">— Choose an event —</option>
+                {% for event in events %}
+                <option value="{{ event['id'] }}"
+                    {% if form_data.get('event_id') == event['id']|string or request.args.get('event_id') == event['id']|string %}selected{% endif %}>
+                    {{ event['title'] }} ({{ event['date'] }})
+                </option>
+                {% endfor %}
+            </select>
+            <div id="capacity-info" style="display: none;"></div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="first_name">First Name <span class="required">*</span></label>
+                <input type="text" id="first_name" name="first_name"
+                       value="{{ form_data.get('first_name', '') }}" required
+                       placeholder="Enter your first name">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name <span class="required">*</span></label>
+                <input type="text" id="last_name" name="last_name"
+                       value="{{ form_data.get('last_name', '') }}" required
+                       placeholder="Enter your last name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email"
+                   value="{{ form_data.get('email', '') }}" required
+                   placeholder="your.email@example.com">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="organisation">Organisation</label>
+                <input type="text" id="organisation" name="organisation"
+                       value="{{ form_data.get('organisation', '') }}"
+                       placeholder="Your company or institution">
+            </div>
+            <div class="form-group">
+                <label for="job_title">Job Title</label>
+                <input type="text" id="job_title" name="job_title"
+                       value="{{ form_data.get('job_title', '') }}"
+                       placeholder="Your role">
+            </div>
+        </div>
+
+        <!-- Preferences -->
+        <div class="form-group">
+            <label for="session_preference">Session Preference</label>
+            <select name="session_preference" id="session_preference">
+                <option value="">— No preference —</option>
+                <option value="Hardware Reuse and Recycling" {% if form_data.get('session_preference') == 'Hardware Reuse and Recycling' %}selected{% endif %}>Hardware Reuse and Recycling</option>
+                <option value="Reverse Logistics" {% if form_data.get('session_preference') == 'Reverse Logistics' %}selected{% endif %}>Reverse Logistics</option>
+                <option value="Digital Product Passports" {% if form_data.get('session_preference') == 'Digital Product Passports' %}selected{% endif %}>Digital Product Passports</option>
+                <option value="AI in Circular Supply Chains" {% if form_data.get('session_preference') == 'AI in Circular Supply Chains' %}selected{% endif %}>AI in Circular Supply Chains</option>
+                <option value="Secure Data Erasure" {% if form_data.get('session_preference') == 'Secure Data Erasure' %}selected{% endif %}>Secure Data Erasure</option>
+                <option value="Sustainable Technology" {% if form_data.get('session_preference') == 'Sustainable Technology' %}selected{% endif %}>Sustainable Technology</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="dietary_requirements">Dietary Requirements</label>
+            <input type="text" id="dietary_requirements" name="dietary_requirements"
+                   value="{{ form_data.get('dietary_requirements', '') }}"
+                   placeholder="e.g., Vegetarian, Vegan, Gluten-free, None">
+        </div>
+
+        <!-- Submit -->
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                Complete Registration
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

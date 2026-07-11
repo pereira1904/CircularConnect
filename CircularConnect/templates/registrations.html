@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Registrations — CircularConnect{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h2>All Registrations</h2>
+    <a href="{{ url_for('register') }}" class="btn btn-primary">New Registration</a>
+</div>
+
+<!-- Search Box -->
+<div class="search-box">
+    <input type="text" id="search-registrations"
+           placeholder="Search by name, email, organisation...">
+</div>
+<p id="visible-count" style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem;">
+    {{ registrations|length }} registration(s) shown
+</p>
+
+{% if registrations %}
+<div class="table-container">
+    <table id="registrations-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Organisation</th>
+                <th>Event</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reg in registrations %}
+            <tr>
+                <td>{{ reg['id'] }}</td>
+                <td>{{ reg['first_name'] }} {{ reg['last_name'] }}</td>
+                <td>{{ reg['email'] }}</td>
+                <td>{{ reg['organisation'] or '—' }}</td>
+                <td>{{ reg['event_title'] }}</td>
+                <td>
+                    <span class="badge badge-{{ reg['status'] }}">{{ reg['status'] }}</span>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a href="{{ url_for('registration_detail', reg_id=reg['id']) }}" class="btn btn-outline btn-sm">View</a>
+                        <a href="{{ url_for('registration_edit', reg_id=reg['id']) }}" class="btn btn-secondary btn-sm">Edit</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state">
+    <h3>No Registrations Yet</h3>
+    <p>Be the first to register for the Circular Technology Summit!</p>
+    <a href="{{ url_for('register') }}" class="btn btn-primary mt-2">Register Now</a>
+</div>
+{% endif %}
+{% endblock %}

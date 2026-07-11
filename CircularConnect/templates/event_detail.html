@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}{{ event['title'] }} — CircularConnect{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    <h2>{{ event['title'] }}</h2>
+
+    <div class="detail-grid">
+        <div class="detail-item">
+            <div class="label">Date</div>
+            <div class="value">{{ event['date'] }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="label">Time</div>
+            <div class="value">{{ event['time'] }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="label">Location</div>
+            <div class="value">{{ event['location'] }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="label">Capacity</div>
+            <div class="value">{{ event['capacity'] }} attendees</div>
+        </div>
+        <div class="detail-item">
+            <div class="label">Organiser</div>
+            <div class="value">{{ event['organiser'] }}</div>
+        </div>
+        <div class="detail-item">
+            <div class="label">Registrations</div>
+            <div class="value">{{ registration_count }} confirmed</div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <h3 style="margin-bottom: 0.5rem;">Description</h3>
+        <p style="color: var(--text-light);">{{ event['description'] }}</p>
+    </div>
+
+    <div class="btn-group mt-3">
+        <a href="{{ url_for('register') }}?event_id={{ event['id'] }}" class="btn btn-primary">Register for this Event</a>
+        <a href="{{ url_for('index') }}" class="btn btn-outline">Back to All Events</a>
+    </div>
+</div>
+
+<!-- Registrations for this event -->
+{% if registrations %}
+<div class="mt-3">
+    <h3 style="margin-bottom: 1rem;">Registered Participants ({{ registration_count }})</h3>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Organisation</th>
+                    <th>Job Title</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reg in registrations %}
+                <tr>
+                    <td>{{ reg['first_name'] }} {{ reg['last_name'] }}</td>
+                    <td>{{ reg['organisation'] or '—' }}</td>
+                    <td>{{ reg['job_title'] or '—' }}</td>
+                    <td>
+                        <span class="badge badge-{{ reg['status'] }}">{{ reg['status'] }}</span>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('registration_detail', reg_id=reg['id']) }}" class="btn btn-outline btn-sm">View</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
