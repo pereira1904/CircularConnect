@@ -129,7 +129,7 @@ The application uses two related tables:
    cd CircularConnect
    ```
 
-2. **Create a virtual environment** (recommended):
+2. **Create a virtual environment**:
 
    ```bash
    python3 -m venv venv
