@@ -80,13 +80,13 @@ def seed_data():
             INSERT INTO events (title, description, date, time, location, capacity, organiser)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         ''', (
-            'Circular Technology Summit 2025',
+            'Circular Technology Summit 2026',
             'A two-day summit exploring the future of circular technology, '
             'data-centre hardware reuse, reverse logistics, sustainable technology, '
             'digital product passports, AI in circular supply chains, and secure '
             'data erasure. Join industry leaders, researchers, and innovators as '
             'we shape a sustainable digital future.',
-            '2025-09-15',
+            '2026-09-15',
             '09:00',
             'Innovation Hub, Dublin, Ireland',
             200,
@@ -102,7 +102,7 @@ def seed_data():
             'Hands-on workshop covering the implementation of digital product '
             'passports for electronic equipment. Learn how to track component '
             'lifecycle, material composition, and recycling potential.',
-            '2025-09-15',
+            '2026-09-15',
             '14:00',
             'Workshop Room A, Innovation Hub, Dublin',
             40,
@@ -117,7 +117,7 @@ def seed_data():
             'Expert panel discussion on leveraging artificial intelligence to '
             'optimise reverse logistics, predict equipment end-of-life, and '
             'automate sorting and grading of returned hardware.',
-            '2025-09-16',
+            '2026-09-16',
             '10:30',
             'Main Auditorium, Innovation Hub, Dublin',
             150,
@@ -132,7 +132,7 @@ def seed_data():
             'An in-depth seminar on certified data erasure methods, GDPR compliance '
             'in hardware disposal, and emerging standards for responsible data '
             'destruction in circular economies.',
-            '2025-09-16',
+            '2026-09-16',
             '14:00',
             'Seminar Room B, Innovation Hub, Dublin',
             60,

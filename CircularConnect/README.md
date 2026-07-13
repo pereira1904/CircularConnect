@@ -2,7 +2,7 @@
 
 **AI-Powered Registration and Personalised Agenda Platform for a Circular Technology Summit**
 
-A Flask web application for managing event registrations at a fictional Circular Technology Summit. Built as a project for the Business Programming module of the Advanced Digital Technologies MSc.
+This Flask web application for managing event registrations at a fictional Circular Technology Summit was created by Group 32 as a project for the Business Programming module of the Advanced Digital Technologies MSc.
 
 ---
 
@@ -207,7 +207,7 @@ All data is entirely fictional and created for demonstration purposes.
 
 ## Author
 
-Business Programming Module — Advanced Digital Technologies MSc
+Business Programming Module - Group 32 - Advanced Digital Technologies MSc
 
 ---
 
