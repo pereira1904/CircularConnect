@@ -131,6 +131,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     capacityInfo.style.display = 'block';
                 });
         });
+    
+        // If an event is already pre-selected, trigger the same logic manually since a server-rendered selection does not fire a "change" event on its own.
+        if (eventSelect.value) {
+            eventSelect.dispatchEvent(new Event('change'));
+        }
     }
 
     // ─── Form Validation Feedback ─────────────────────────────────────────────
