@@ -209,10 +209,10 @@ All data is entirely fictional and created for demonstration purposes.
 
 Business Programming Module - Group 32 - Advanced Digital Technologies MSc
 
-**Luis Pereira
-**Gonçalo Nunes 
-**Justyna Szmajduch
-**Alexandru Vandor
+## Luis Pereira
+## Gonçalo Nunes 
+## Justyna Szmajduch
+## Alexandru Vandor
 ---
 
 ## Licence
